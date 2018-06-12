@@ -1,0 +1,71 @@
+﻿@model SequenceGenerator.Models.SequenceModel
+@{
+    ViewBag.Title = "Sequence Generator";
+}
+
+
+@using (Html.BeginForm("Index", "Sequence"))
+{
+    <div class="row">
+        <div class="row">
+            <div class="col-md-12 form-group">
+                @Html.DisplayNameFor(m => m.EnteredInput)
+                <span style="color:red;">*</span>
+                @Html.TextBoxFor(m => m.EnteredInput, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.EnteredInput, string.Empty, new { @class = "has-error" })
+
+            </div>
+            <div class="col-md-3 form-group">
+                <input type="submit" value="Get Sequences" />
+            </div>
+        </div>
+        @if (Model.Sequences != null)
+        {
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Sequence</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>All Elements</td>
+                                <td>
+                                    <div class=scrollable>
+                                        @Html.DisplayFor(m => m.Sequences.AllSequence, new { @class = "form-control" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Even Elements</td>
+                                <td>
+                                    <div class=scrollable>
+                                        @Html.DisplayFor(m => m.Sequences.EvenSequence, new { @class = "form-control" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Odd Elements</td>
+                                <td>
+                                    <div class=scrollable>@Html.DisplayFor(m => m.Sequences.OddSequence, new { @class = "form-control" })</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Multiple Sequence</td>
+                                <td>
+                                    <div class=scrollable>
+                                        @Html.DisplayFor(m => m.Sequences.MultiplesSequence, new { @class = "form-control" })
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+}
